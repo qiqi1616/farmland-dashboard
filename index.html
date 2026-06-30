@@ -795,41 +795,39 @@
             return '';
           }
         },
-        series: [
-          {
-            name: '厦门市',
-            type: 'map',
-            map: 'xiamen',
-            roam: true,
-            zoom: 1.2,
-            center: [118.15, 24.7],
-            itemStyle: {
-              areaColor: '#1a3d6e',
-              borderColor: 'rgba(0, 212, 255, 0.5)',
-              borderWidth: 1,
-              opacity: 0.5
-            },
-            emphasis: {
-              itemStyle: {
-                areaColor: '#2563eb',
-                borderColor: '#00d4ff',
-                borderWidth: 2
-              },
-              label: { show: true, color: '#fff' }
-            },
-            label: {
-              show: true,
-              color: '#8ba3b9',
-              fontSize: 11
-            },
-            select: {
-              disabled: true
-            },
-            data: [
-              { name: '同安区', itemStyle: { areaColor: '#d46a0a', shadowBlur: 20, shadowColor: '#d46a0a', opacity: 1 }, label: { show: true, color: '#fff', fontSize: 12, fontWeight: 'bold' } },
-              { name: '翔安区', itemStyle: { areaColor: '#0f8a60', shadowBlur: 20, shadowColor: '#0f8a60', opacity: 1 }, label: { show: true, color: '#fff', fontSize: 12, fontWeight: 'bold' } }
-            ]
+        geo: {
+          map: 'xiamen',
+          roam: true,
+          zoom: 1.2,
+          center: [118.15, 24.7],
+          itemStyle: {
+            areaColor: '#1a3d6e',
+            borderColor: 'rgba(0, 212, 255, 0.5)',
+            borderWidth: 1,
+            opacity: 0.5
           },
+          emphasis: {
+            itemStyle: {
+              areaColor: '#2563eb',
+              borderColor: '#00d4ff',
+              borderWidth: 2
+            },
+            label: { show: true, color: '#fff' }
+          },
+          select: {
+            disabled: true
+          },
+          label: {
+            show: true,
+            color: '#8ba3b9',
+            fontSize: 11
+          },
+          regions: [
+            { name: '同安区', itemStyle: { areaColor: '#d46a0a', shadowBlur: 20, shadowColor: '#d46a0a', opacity: 1 }, label: { show: true, color: '#fff', fontSize: 12, fontWeight: 'bold' } },
+            { name: '翔安区', itemStyle: { areaColor: '#0f8a60', shadowBlur: 20, shadowColor: '#0f8a60', opacity: 1 }, label: { show: true, color: '#fff', fontSize: 12, fontWeight: 'bold' } }
+          ]
+        },
+        series: [
           {
             name: '承保项目',
             type: 'scatter',
@@ -864,6 +862,16 @@
       // 隐藏加载
       document.getElementById('loadingOverlay').classList.add('hidden');
     }
+
+    // 全局错误兜底：即使JS出错也隐藏loading
+    window.addEventListener('error', function() {
+      var overlay = document.getElementById('loadingOverlay');
+      if (overlay) overlay.classList.add('hidden');
+    });
+    setTimeout(function() {
+      var overlay = document.getElementById('loadingOverlay');
+      if (overlay && !overlay.classList.contains('hidden')) overlay.classList.add('hidden');
+    }, 5000);
     
     
 
