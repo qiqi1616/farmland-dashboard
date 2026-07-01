@@ -456,6 +456,271 @@
     .legend-color.tongan { background: var(--orange); box-shadow: 0 0 6px var(--orange); }
     .legend-color.xiangan { background: var(--green); box-shadow: 0 0 6px var(--green); }
     .legend-color.other { background: var(--blue); opacity: 0.6; }
+
+    /* Weather Section */
+    .weather-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 20px 40px;
+    }
+    .weather-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .weather-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .weather-update-time {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    .weather-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .weather-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 18px;
+      border: 1px solid var(--border-color);
+    }
+    .weather-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .weather-district-name {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .weather-icon-large {
+      font-size: 32px;
+    }
+    .weather-temp {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .weather-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    .weather-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .weather-detail-item {
+      text-align: center;
+      padding: 6px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+    }
+    .weather-detail-label {
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+    .weather-detail-value {
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .weather-forecast {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .forecast-day {
+      flex: 1;
+      text-align: center;
+      padding: 6px 4px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      font-size: 11px;
+    }
+    .forecast-day .date { color: var(--text-secondary); font-size: 10px; }
+    .forecast-day .icon { font-size: 18px; margin: 4px 0; }
+    .forecast-day .temp { color: var(--accent-cyan); font-weight: 500; }
+    .weather-warning {
+      background: rgba(255, 180, 0, 0.15);
+      border: 1px solid rgba(255, 180, 0, 0.4);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+    .weather-warning.orange {
+      background: rgba(255, 140, 0, 0.15);
+      border-color: rgba(255, 140, 0, 0.5);
+    }
+    .weather-warning.red {
+      background: rgba(255, 50, 50, 0.15);
+      border-color: rgba(255, 50, 50, 0.5);
+    }
+    .warning-level {
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+    .warning-level.yellow { background: rgba(255, 200, 0, 0.3); color: #ffc800; }
+    .warning-level.orange { background: rgba(255, 140, 0, 0.3); color: #ff8c00; }
+    .warning-level.red { background: rgba(255, 50, 50, 0.3); color: #ff3232; }
+
+    /* Inspection Section */
+    .inspection-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 20px 40px;
+    }
+    .inspection-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .inspection-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent-green);
+    }
+    .inspection-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .inspection-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+      grid-column: 1 / -1;
+    }
+    .ins-stat-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+    .ins-stat-value {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .ins-stat-value.cyan { color: var(--accent-cyan); }
+    .ins-stat-value.green { color: var(--accent-green); }
+    .ins-stat-value.orange { color: var(--orange); }
+    .ins-stat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .timeline-panel, .issues-panel {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 15px;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+    .timeline-panel::-webkit-scrollbar, .issues-panel::-webkit-scrollbar { width: 5px; }
+    .timeline-panel::-webkit-scrollbar-thumb, .issues-panel::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
+    .panel-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .timeline-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-dot-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 16px;
+    }
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .timeline-dot.done { background: var(--accent-green); box-shadow: 0 0 6px var(--accent-green); }
+    .timeline-dot.progress { background: var(--accent-cyan); box-shadow: 0 0 6px var(--accent-cyan); }
+    .timeline-dot.pending { background: var(--text-secondary); }
+    .timeline-info { flex: 1; }
+    .timeline-date { font-size: 11px; color: var(--text-secondary); }
+    .timeline-title { font-size: 13px; font-weight: 500; margin: 3px 0; }
+    .timeline-detail { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+    .status-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 500;
+    }
+    .status-tag.done { background: rgba(0, 255, 136, 0.15); color: var(--accent-green); }
+    .status-tag.progress { background: rgba(0, 212, 255, 0.15); color: var(--accent-cyan); }
+    .status-tag.pending { background: rgba(139, 163, 185, 0.15); color: var(--text-secondary); }
+    .issue-item {
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      margin-bottom: 8px;
+      border-left: 3px solid var(--accent-cyan);
+    }
+    .issue-item.resolved { border-left-color: var(--accent-green); opacity: 0.7; }
+    .issue-item.pending { border-left-color: var(--orange); }
+    .issue-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    .issue-title { font-size: 12px; font-weight: 500; }
+    .issue-location { font-size: 11px; color: var(--text-secondary); margin-bottom: 6px; }
+    .progress-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .progress-bar {
+      flex: 1;
+      height: 5px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.5s;
+    }
+    .progress-fill.done { background: var(--accent-green); }
+    .progress-fill.in-progress { background: var(--accent-cyan); }
+    .progress-fill.waiting { background: var(--orange); }
+    .progress-text { font-size: 10px; color: var(--text-secondary); min-width: 32px; }
   </style>
 </head>
 <body>
@@ -583,6 +848,85 @@
     </div>
   </div>
 
+  <!-- 天气预报预警 -->
+  <div class="weather-section">
+    <div class="weather-header">
+      <div class="weather-title">
+        <span>🌤️</span> 天气预报与预警
+      </div>
+      <div class="weather-update-time" id="weatherUpdateTime">数据加载中...</div>
+    </div>
+    <div class="weather-grid">
+      <div class="weather-card" id="weatherTongan">
+        <div class="weather-card-header">
+          <span class="weather-district-name" style="color:var(--orange)">📍 同安区</span>
+          <span class="weather-icon-large" id="iconTongan">⏳</span>
+        </div>
+        <div class="weather-temp" id="tempTongan">--°C</div>
+        <div class="weather-desc" id="descTongan">加载中...</div>
+        <div class="weather-details">
+          <div class="weather-detail-item">
+            <div class="weather-detail-label">体感温度</div>
+            <div class="weather-detail-value" id="feelsTongan">--°</div>
+          </div>
+          <div class="weather-detail-item">
+            <div class="weather-detail-label">湿度</div>
+            <div class="weather-detail-value" id="humidityTongan">--%</div>
+          </div>
+          <div class="weather-detail-item">
+            <div class="weather-detail-label">风力</div>
+            <div class="weather-detail-value" id="windTongan">--</div>
+          </div>
+        </div>
+        <div class="weather-forecast" id="forecastTongan"></div>
+        <div id="warningTongan"></div>
+      </div>
+      <div class="weather-card" id="weatherXiangan">
+        <div class="weather-card-header">
+          <span class="weather-district-name" style="color:var(--green)">📍 翔安区</span>
+          <span class="weather-icon-large" id="iconXiangan">⏳</span>
+        </div>
+        <div class="weather-temp" id="tempXiangan">--°C</div>
+        <div class="weather-desc" id="descXiangan">加载中...</div>
+        <div class="weather-details">
+          <div class="weather-detail-item">
+            <div class="weather-detail-label">体感温度</div>
+            <div class="weather-detail-value" id="feelsXiangan">--°</div>
+          </div>
+          <div class="weather-detail-item">
+            <div class="weather-detail-label">湿度</div>
+            <div class="weather-detail-value" id="humidityXiangan">--%</div>
+          </div>
+          <div class="weather-detail-item">
+            <div class="weather-detail-label">风力</div>
+            <div class="weather-detail-value" id="windXiangan">--</div>
+          </div>
+        </div>
+        <div class="weather-forecast" id="forecastXiangan"></div>
+        <div id="warningXiangan"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风险巡查与整改跟踪 -->
+  <div class="inspection-section">
+    <div class="inspection-header">
+      <span class="inspection-title">🔍 风险巡查与整改跟踪</span>
+      <span class="learning-badge" style="background:rgba(0,255,136,0.2);color:var(--accent-green)">巡查记录 · 隐患整改</span>
+    </div>
+    <div class="inspection-stats" id="inspectionStats"></div>
+    <div class="inspection-content">
+      <div class="timeline-panel">
+        <div class="panel-subtitle">📅 巡查记录时间线</div>
+        <div id="inspectionTimeline"></div>
+      </div>
+      <div class="issues-panel">
+        <div class="panel-subtitle">⚠️ 问题隐患整改跟踪</div>
+        <div id="issuesList"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="learning-section">
     <div class="learning-header">
       <span class="learning-title">📚 学习专栏</span>
@@ -621,6 +965,54 @@
       {title:"学习进行时丨习近平总书记心系农民丰收的故事", source:"新华网", date:"2025-09-24", url:"https://www.news.cn/politics/xxjxs/20250924/2ccac3960bb843718d50824f56569490/c.html", summary:"重温总书记关于耕地保护、粮食安全、农民增收的重要论述。"},
       {title:"习言道｜习近平再次强调这条红线", source:"中国新闻网", date:"2026-06-28", url:"https://www.chinanews.com.cn/gn/2026/06-28/10641498.shtml", summary:"保护耕地要像保护文物那样来做，甚至要像保护大熊猫那样来做。"},
       {title:"农业农村部关于印发《高标准农田建设质量管理办法》的通知", source:"农业农村部", date:"2025-11-19", url:"https://ntjss.moa.gov.cn/zcfb/202511/t20251119_6479037.htm", summary:"规范高标准农田建设项目质量管理，实行项目法人责任制。"}
+    ];
+
+    // ===== 天气预报配置 =====
+    const WEATHER_CONFIG = {
+      apiKey: 'a5866b39daa944138c7aaaa6df596be0',
+      baseUrl: 'https://devapi.qweather.com/v7',
+      locations: {
+        tongan: { id: '101230201', name: '同安区' },
+        xiangan: { id: '101230202', name: '翔安区' }
+      }
+    };
+    // 天气图标映射
+    const WEATHER_ICONS = {
+      '100':'☀️','101':'☁️','102':'⛅','103':'⛅','104':'☁️',
+      '150':'☀️','151':'☁️','152':'⛅','153':'⛅','154':'☁️',
+      '300':'🌦️','301':'🌧️','302':'⛈️','303':'⛈️','304':'⛈️',
+      '305':'🌧️','306':'🌧️','307':'🌧️','308':'🌧️','309':'🌦️',
+      '310':'🌧️','311':'🌧️','312':'🌧️','313':'🌧️','314':'🌧️',
+      '315':'🌧️','316':'🌧️','317':'🌧️','318':'🌧️','350':'🌦️',
+      '351':'🌧️','399':'🌧️',
+      '400':'🌨️','401':'🌨️','402':'🌨️','403':'🌨️','404':'🌨️',
+      '405':'🌨️','406':'🌨️','407':'🌨️','408':'🌨️','409':'🌨️',
+      '410':'🌨️','456':'🌨️','457':'🌨️','499':'🌨️',
+      '500':'🌫️','501':'🌫️','502':'🌫️','503':'🌫️','504':'🌫️',
+      '507':'🌫️','508':'🌫️','509':'🌫️','510':'🌫️','514':'🌫️',
+      '515':'🌫️','900':'🌡️','901':'❄️','999':'❓'
+    };
+
+    // ===== 巡查记录数据 =====
+    const INSPECTION_RECORDS = [
+      {date:'2024-06-15', type:'汛前风险勘查', areas:['同安区','翔安区'], projects:['明溪村','后田村','大宅社区','古宅村','上宅村'], status:'done', summary:'2024年保前风勘及汛期巡查，覆盖同安明溪项目与翔安4个标的'},
+      {date:'2024-09-20', type:'TIS管护巡查', areas:['同安区','翔安区'], projects:['明溪村','后田村','大宅社区','古宅村','上宅村'], status:'done', summary:'委托津农进行TIS管护巡查，发现3项问题，平台使用费2.4万元'},
+      {date:'2025-04-10', type:'汛前风险勘查', areas:['同安区'], projects:['竹坝华侨农场','康浔村','石浔社区','后埔村','莲花村','云埔村','褒美村','后垄村','军村村','溪西村'], status:'done', summary:'同安新增10个项目保前风勘'},
+      {date:'2025-07-22', type:'汛期巡查', areas:['同安区','翔安区'], projects:['全部15个项目'], status:'done', summary:'两区全部项目汛期巡查，发现5项隐患'},
+      {date:'2026-03-15', type:'汛前风险勘查', areas:['同安区','翔安区'], projects:['全部15个项目'], status:'done', summary:'2026年汛期巡查（同安+思明），覆盖全部承保项目'},
+      {date:'2026-07-10', type:'汛期巡查', areas:['同安区','翔安区'], projects:['重点巡查12个项目'], status:'progress', summary:'2026年汛期巡查进行中，已完成同安区重点巡查'}
+    ];
+
+    // ===== 问题隐患整改数据 =====
+    const INSPECTION_ISSUES = [
+      {id:1, title:'灌溉设施损坏', location:'莲花村 · 莲花镇', findDate:'2024-09-20', dueDate:'2024-11-30', status:'resolved', progress:100, desc:'主干渠衬砌段破损约15米，影响300亩灌溉'},
+      {id:2, title:'排水沟堵塞', location:'后田村 · 内厝镇', findDate:'2024-09-20', dueDate:'2024-12-15', status:'resolved', progress:100, desc:'排水主沟淤积严重，清淤量约200立方米'},
+      {id:3, title:'田间道路破损', location:'大宅社区 · 香山街道', findDate:'2024-09-20', dueDate:'2025-01-30', status:'resolved', progress:100, desc:'机耕路路面开裂下沉约50米，影响农机通行'},
+      {id:4, title:'灌溉泵站设备老化', location:'褒美村 · 汀溪镇', findDate:'2025-07-22', dueDate:'2025-12-31', status:'resolved', progress:100, desc:'泵站水泵运行异常，已更换2台潜水泵'},
+      {id:5, title:'防护围栏缺失', location:'溪西村 · 五显镇', findDate:'2025-07-22', dueDate:'2026-03-31', status:'progress', progress:65, desc:'约200米田间防护围栏损坏缺失，存在安全隐患'},
+      {id:6, title:'渠道渗漏问题', location:'云埔村 · 莲花镇', findDate:'2025-07-22', dueDate:'2026-06-30', status:'progress', progress:40, desc:'支渠衬砌层开裂渗漏，需重新铺设约120米'},
+      {id:7, title:'工程质量缺陷', location:'古宅村 · 新圩镇', findDate:'2026-03-15', dueDate:'2026-09-30', status:'progress', progress:20, desc:'部分田块平整度不达标，需二次平整约80亩'},
+      {id:8, title:'电力线路老化', location:'军村村 · 五显镇', findDate:'2026-03-15', dueDate:'2026-08-31', status:'pending', progress:0, desc:'灌溉用电线路绝缘层老化，需全线更换约800米'}
     ];
 
     // 保费映射（同安区30元/亩，翔安区30元/亩）
@@ -893,11 +1285,119 @@
       if (chart) chart.resize();
     });
 
+    // ===== 天气预报功能 =====
+    async function fetchWeather(locationId) {
+      try {
+        const resp = await fetch(`${WEATHER_CONFIG.baseUrl}/weather/now?location=${locationId}&key=${WEATHER_CONFIG.apiKey}`);
+        const data = await resp.json();
+        return data.code === '200' ? data.now : null;
+      } catch(e) { return null; }
+    }
+
+    async function fetchForecast(locationId) {
+      try {
+        const resp = await fetch(`${WEATHER_CONFIG.baseUrl}/weather/3d?location=${locationId}&key=${WEATHER_CONFIG.apiKey}`);
+        const data = await resp.json();
+        return data.code === '200' ? data.daily : null;
+      } catch(e) { return null; }
+    }
+
+    async function fetchWarning(locationId) {
+      try {
+        const resp = await fetch(`https://devapi.qweather.com/v7/warning/now?location=${locationId}&key=${WEATHER_CONFIG.apiKey}`);
+        const data = await resp.json();
+        return data.code === '200' ? data.warning : null;
+      } catch(e) { return null; }
+    }
+
+    function renderWeatherCard(district, now, forecast, warnings) {
+      const key = district === 'tongan' ? 'Tongan' : 'Xiangan';
+      if (now) {
+        document.getElementById('icon' + key).textContent = WEATHER_ICONS[now.icon] || '🌤️';
+        document.getElementById('temp' + key).textContent = now.temp + '°C';
+        document.getElementById('desc' + key).textContent = now.text + ' | 体感 ' + now.feelslike + '°C';
+        document.getElementById('feels' + key).textContent = now.feelslike + '°C';
+        document.getElementById('humidity' + key).textContent = now.humidity + '%';
+        document.getElementById('wind' + key).textContent = now.windDir + ' ' + now.windScale + '级';
+      } else {
+        document.getElementById('desc' + key).textContent = '天气数据暂不可用';
+      }
+      if (forecast && forecast.length >= 3) {
+        const fcEl = document.getElementById('forecast' + key);
+        fcEl.innerHTML = forecast.slice(0, 3).map(d => {
+          const dt = new Date(d.fxDate);
+          const dayStr = (dt.getMonth()+1) + '/' + dt.getDate();
+          return '<div class="forecast-day"><div class="date">' + dayStr + '</div><div class="icon">' + (WEATHER_ICONS[d.iconDay] || '🌤️') + '</div><div class="temp">' + d.tempMin + '~' + d.tempMax + '°</div></div>';
+        }).join('');
+      }
+      const warnEl = document.getElementById('warning' + key);
+      if (warnings && warnings.length > 0) {
+        warnEl.innerHTML = warnings.filter(w => {
+          const t = w.type || '';
+          return t.includes('暴雨') || t.includes('台风') || t.includes('雷电') || t.includes('强对流') || t.includes('冰雹');
+        }).map(w => {
+          const lvl = (w.level || '').toLowerCase();
+          const cls = lvl.includes('红') ? 'red' : lvl.includes('橙') ? 'orange' : 'yellow';
+          return '<div class="weather-warning ' + cls + '"><span class="warning-level ' + cls + '">' + w.level + '</span>' + w.title + '：' + w.text + '</div>';
+        }).join('');
+      }
+    }
+
+    async function initWeather() {
+      const now = new Date();
+      document.getElementById('weatherUpdateTime').textContent = '更新时间：' + now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+      const [tNow, tFc, tWarn, xNow, xFc, xWarn] = await Promise.all([
+        fetchWeather(WEATHER_CONFIG.locations.tongan.id),
+        fetchForecast(WEATHER_CONFIG.locations.tongan.id),
+        fetchWarning(WEATHER_CONFIG.locations.tongan.id),
+        fetchWeather(WEATHER_CONFIG.locations.xiangan.id),
+        fetchForecast(WEATHER_CONFIG.locations.xiangan.id),
+        fetchWarning(WEATHER_CONFIG.locations.xiangan.id)
+      ]);
+      renderWeatherCard('tongan', tNow, tFc, tWarn);
+      renderWeatherCard('xiangan', xNow, xFc, xWarn);
+    }
+
+    // ===== 巡查与整改功能 =====
+    function initInspection() {
+      const statsEl = document.getElementById('inspectionStats');
+      const total = INSPECTION_RECORDS.length;
+      const done = INSPECTION_RECORDS.filter(r => r.status === 'done').length;
+      const issuesTotal = INSPECTION_ISSUES.length;
+      const issuesResolved = INSPECTION_ISSUES.filter(i => i.status === 'resolved').length;
+      statsEl.innerHTML = [
+        {v: total, l: '巡查总次数', c: 'cyan'},
+        {v: done + '/' + total, l: '已完成巡查', c: 'green'},
+        {v: issuesTotal, l: '发现隐患总数', c: 'orange'},
+        {v: issuesResolved + '/' + issuesTotal, l: '已整改', c: 'green'}
+      ].map(s => '<div class="ins-stat-card"><div class="ins-stat-value ' + s.c + '">' + s.v + '</div><div class="ins-stat-label">' + s.l + '</div></div>').join('');
+
+      const tlEl = document.getElementById('inspectionTimeline');
+      tlEl.innerHTML = INSPECTION_RECORDS.slice().reverse().map(r => {
+        const statusLabel = r.status === 'done' ? '已完成' : r.status === 'progress' ? '进行中' : '待执行';
+        return '<div class="timeline-item"><div class="timeline-dot-wrap"><div class="timeline-dot ' + r.status + '"></div></div><div class="timeline-info"><div class="timeline-date">' + r.date + ' <span class="status-tag ' + r.status + '">' + statusLabel + '</span></div><div class="timeline-title">' + r.type + '</div><div class="timeline-detail">' + r.summary + '</div></div></div>';
+      }).join('');
+
+      const issEl = document.getElementById('issuesList');
+      issEl.innerHTML = INSPECTION_ISSUES.slice().sort((a,b) => {
+        const order = {pending:0, progress:1, resolved:2};
+        return order[a.status] - order[b.status];
+      }).map(i => {
+        const statusLabel = i.status === 'resolved' ? '已整改' : i.status === 'progress' ? '整改中' : '待处理';
+        const fillClass = i.status === 'resolved' ? 'done' : i.status === 'progress' ? 'in-progress' : 'waiting';
+        return '<div class="issue-item ' + i.status + '"><div class="issue-header"><span class="issue-title">' + i.title + '</span><span class="status-tag ' + (i.status === 'resolved' ? 'done' : i.status === 'progress' ? 'progress' : 'pending') + '">' + statusLabel + '</span></div><div class="issue-location">📍 ' + i.location + ' | 发现：' + i.findDate + ' | 截止：' + i.dueDate + '</div><div style="font-size:11px;color:var(--text-secondary);margin-bottom:6px">' + i.desc + '</div><div class="progress-bar-wrap"><div class="progress-bar"><div class="progress-fill ' + fillClass + '" style="width:' + i.progress + '%"></div></div><span class="progress-text">' + i.progress + '%</span></div></div>';
+      }).join('');
+    }
+
     // 启动
     document.addEventListener('DOMContentLoaded', function() {
       initLearning();
       initProjectList();
       initMap();
+      initWeather();
+      initInspection();
+      // 每小时刷新天气
+      setInterval(initWeather, 3600000);
     });
   </script>
 </body>
