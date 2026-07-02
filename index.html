@@ -975,31 +975,45 @@
       {title:"厦门市海沧区超九成农田实现管网灌溉", source:"厦门市农业农村局", date:"2026-03-05", url:"https://sn.xm.gov.cn/ztzl/gbzntjstcwt/202603/t20260305_2984155.htm", summary:"从源头破解农业灌溉用水难题，超九成农田实现管网灌溉，提升农田水利设施水平。"}
     ];
 
-    // ===== 天气预报配置 =====
+    // ===== 天气预报配置（Open-Meteo 免费API，无需Key） =====
     const WEATHER_CONFIG = {
-      apiKey: 'a5866b39daa944138c7aaaa6df596be0',
-      baseUrl: 'https://devapi.qweather.com/v7',
+      baseUrl: 'https://api.open-meteo.com/v1',
       locations: {
-        tongan: { id: '101230201', name: '同安区' },
-        xiangan: { id: '101230202', name: '翔安区' }
+        tongan: { lat: 24.72, lon: 118.15, name: '同安区' },
+        xiangan: { lat: 24.62, lon: 118.25, name: '翔安区' }
       }
     };
-    // 天气图标映射
-    const WEATHER_ICONS = {
-      '100':'☀️','101':'☁️','102':'⛅','103':'⛅','104':'☁️',
-      '150':'☀️','151':'☁️','152':'⛅','153':'⛅','154':'☁️',
-      '300':'🌦️','301':'🌧️','302':'⛈️','303':'⛈️','304':'⛈️',
-      '305':'🌧️','306':'🌧️','307':'🌧️','308':'🌧️','309':'🌦️',
-      '310':'🌧️','311':'🌧️','312':'🌧️','313':'🌧️','314':'🌧️',
-      '315':'🌧️','316':'🌧️','317':'🌧️','318':'🌧️','350':'🌦️',
-      '351':'🌧️','399':'🌧️',
-      '400':'🌨️','401':'🌨️','402':'🌨️','403':'🌨️','404':'🌨️',
-      '405':'🌨️','406':'🌨️','407':'🌨️','408':'🌨️','409':'🌨️',
-      '410':'🌨️','456':'🌨️','457':'🌨️','499':'🌨️',
-      '500':'🌫️','501':'🌫️','502':'🌫️','503':'🌫️','504':'🌫️',
-      '507':'🌫️','508':'🌫️','509':'🌫️','510':'🌫️','514':'🌫️',
-      '515':'🌫️','900':'🌡️','901':'❄️','999':'❓'
+    // WMO Weather Code → 图标 & 中文描述
+    const WMO_MAP = {
+      0:{icon:'☀️',text:'晴'},1:{icon:'🌤️',text:'大部晴朗'},2:{icon:'⛅',text:'多云'},3:{icon:'☁️',text:'阴天'},
+      45:{icon:'🌫️',text:'雾'},48:{icon:'🌫️',text:'雾凇'},
+      51:{icon:'🌦️',text:'小毛毛雨'},53:{icon:'🌦️',text:'中毛毛雨'},55:{icon:'🌦️',text:'大毛毛雨'},
+      56:{icon:'🌧️',text:'冻毛毛雨'},57:{icon:'🌧️',text:'强冻毛毛雨'},
+      61:{icon:'🌧️',text:'小雨'},63:{icon:'🌧️',text:'中雨'},65:{icon:'🌧️',text:'大雨'},
+      66:{icon:'🌧️',text:'冻雨'},67:{icon:'🌧️',text:'强冻雨'},
+      71:{icon:'🌨️',text:'小雪'},73:{icon:'🌨️',text:'中雪'},75:{icon:'🌨️',text:'大雪'},
+      77:{icon:'🌨️',text:'雪粒'},80:{icon:'🌧️',text:'阵雨(小)'},81:{icon:'🌧️',text:'阵雨(中)'},82:{icon:'🌧️',text:'阵雨(大)'},
+      85:{icon:'🌨️',text:'小阵雪'},86:{icon:'🌨️',text:'大阵雪'},
+      95:{icon:'⛈️',text:'雷暴'},96:{icon:'⛈️',text:'雷暴伴小冰雹'},99:{icon:'⛈️',text:'雷暴伴大冰雹'}
     };
+    function wmoInfo(code) { return WMO_MAP[code] || {icon:'🌤️',text:'未知'}; }
+    function windDirText(deg) {
+      const dirs = ['北风','东北风','东北风','东风','东风','东南风','东南风','南风',
+                    '南风','西南风','西南风','西风','西风','西北风','西北风','北风'];
+      return dirs[Math.round(deg / 22.5) % 16];
+    }
+    function windScale(kmh) {
+      if (kmh < 1) return '0级';
+      if (kmh <= 5) return '1级';
+      if (kmh <= 11) return '2级';
+      if (kmh <= 19) return '3级';
+      if (kmh <= 28) return '4级';
+      if (kmh <= 38) return '5级';
+      if (kmh <= 49) return '6级';
+      if (kmh <= 61) return '7级';
+      if (kmh <= 74) return '8级';
+      return '9级+';
+    }
 
     // ===== 巡查记录数据 =====
     const INSPECTION_RECORDS = [
@@ -1302,76 +1316,51 @@
     });
 
     // ===== 天气预报功能 =====
-    async function fetchWeather(locationId) {
+    async function fetchWeatherOpenMeteo(loc) {
       try {
-        const resp = await fetch(`${WEATHER_CONFIG.baseUrl}/weather/now?location=${locationId}&key=${WEATHER_CONFIG.apiKey}`);
+        const url = `${WEATHER_CONFIG.baseUrl}/forecast?latitude=${loc.lat}&longitude=${loc.lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FShanghai&forecast_days=3`;
+        const resp = await fetch(url);
         const data = await resp.json();
-        return data.code === '200' ? data.now : null;
-      } catch(e) { return null; }
+        const c = data.current;
+        const d = data.daily;
+        const cur = wmoInfo(c.weather_code);
+        const now = { temp: String(Math.round(c.temperature_2m)), feelslike: String(Math.round(c.apparent_temperature)), humidity: String(c.relative_humidity_2m), text: cur.text, icon: cur.icon, windDir: windDirText(c.wind_direction_10m), windScale: windScale(c.wind_speed_10m) };
+        const forecast = d.time.map((t, i) => ({ fxDate: t, iconDay: wmoInfo(d.weather_code[i]).icon, tempMax: String(Math.round(d.temperature_2m_max[i])), tempMin: String(Math.round(d.temperature_2m_min[i])) }));
+        return { now, forecast };
+      } catch(e) { console.error('Weather fetch error:', e); return { now: null, forecast: null }; }
     }
 
-    async function fetchForecast(locationId) {
-      try {
-        const resp = await fetch(`${WEATHER_CONFIG.baseUrl}/weather/3d?location=${locationId}&key=${WEATHER_CONFIG.apiKey}`);
-        const data = await resp.json();
-        return data.code === '200' ? data.daily : null;
-      } catch(e) { return null; }
-    }
-
-    async function fetchWarning(locationId) {
-      try {
-        const resp = await fetch(`https://devapi.qweather.com/v7/warning/now?location=${locationId}&key=${WEATHER_CONFIG.apiKey}`);
-        const data = await resp.json();
-        return data.code === '200' ? data.warning : null;
-      } catch(e) { return null; }
-    }
-
-    function renderWeatherCard(district, now, forecast, warnings) {
+    function renderWeatherCard(district, now, forecast) {
       const key = district === 'tongan' ? 'Tongan' : 'Xiangan';
       if (now) {
-        document.getElementById('icon' + key).textContent = WEATHER_ICONS[now.icon] || '🌤️';
+        document.getElementById('icon' + key).textContent = now.icon;
         document.getElementById('temp' + key).textContent = now.temp + '°C';
         document.getElementById('desc' + key).textContent = now.text + ' | 体感 ' + now.feelslike + '°C';
         document.getElementById('feels' + key).textContent = now.feelslike + '°C';
         document.getElementById('humidity' + key).textContent = now.humidity + '%';
-        document.getElementById('wind' + key).textContent = now.windDir + ' ' + now.windScale + '级';
+        document.getElementById('wind' + key).textContent = now.windDir + ' ' + now.windScale;
       } else {
         document.getElementById('desc' + key).textContent = '天气数据暂不可用';
       }
-      if (forecast && forecast.length >= 3) {
+      if (forecast && forecast.length >= 1) {
         const fcEl = document.getElementById('forecast' + key);
         fcEl.innerHTML = forecast.slice(0, 3).map(d => {
           const dt = new Date(d.fxDate);
           const dayStr = (dt.getMonth()+1) + '/' + dt.getDate();
-          return '<div class="forecast-day"><div class="date">' + dayStr + '</div><div class="icon">' + (WEATHER_ICONS[d.iconDay] || '🌤️') + '</div><div class="temp">' + d.tempMin + '~' + d.tempMax + '°</div></div>';
-        }).join('');
-      }
-      const warnEl = document.getElementById('warning' + key);
-      if (warnings && warnings.length > 0) {
-        warnEl.innerHTML = warnings.filter(w => {
-          const t = w.type || '';
-          return t.includes('暴雨') || t.includes('台风') || t.includes('雷电') || t.includes('强对流') || t.includes('冰雹');
-        }).map(w => {
-          const lvl = (w.level || '').toLowerCase();
-          const cls = lvl.includes('红') ? 'red' : lvl.includes('橙') ? 'orange' : 'yellow';
-          return '<div class="weather-warning ' + cls + '"><span class="warning-level ' + cls + '">' + w.level + '</span>' + w.title + '：' + w.text + '</div>';
+          return '<div class="forecast-day"><div class="date">' + dayStr + '</div><div class="icon">' + d.iconDay + '</div><div class="temp">' + d.tempMin + '~' + d.tempMax + '°</div></div>';
         }).join('');
       }
     }
 
     async function initWeather() {
       const now = new Date();
-      document.getElementById('weatherUpdateTime').textContent = '更新时间：' + now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-      const [tNow, tFc, tWarn, xNow, xFc, xWarn] = await Promise.all([
-        fetchWeather(WEATHER_CONFIG.locations.tongan.id),
-        fetchForecast(WEATHER_CONFIG.locations.tongan.id),
-        fetchWarning(WEATHER_CONFIG.locations.tongan.id),
-        fetchWeather(WEATHER_CONFIG.locations.xiangan.id),
-        fetchForecast(WEATHER_CONFIG.locations.xiangan.id),
-        fetchWarning(WEATHER_CONFIG.locations.xiangan.id)
+      document.getElementById('weatherUpdateTime').textContent = '更新时间：' + now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0') + ' | 数据源：Open-Meteo';
+      const [tResult, xResult] = await Promise.all([
+        fetchWeatherOpenMeteo(WEATHER_CONFIG.locations.tongan),
+        fetchWeatherOpenMeteo(WEATHER_CONFIG.locations.xiangan)
       ]);
-      renderWeatherCard('tongan', tNow, tFc, tWarn);
-      renderWeatherCard('xiangan', xNow, xFc, xWarn);
+      renderWeatherCard('tongan', tResult.now, tResult.forecast);
+      renderWeatherCard('xiangan', xResult.now, xResult.forecast);
     }
 
     // ===== 巡查与整改功能 =====
