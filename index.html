@@ -724,6 +724,288 @@
     .progress-fill.in-progress { background: var(--accent-cyan); }
     .progress-fill.waiting { background: var(--orange); }
     .progress-text { font-size: 10px; color: var(--text-secondary); min-width: 32px; }
+
+    /* 台风预警面板 */
+    .typhoon-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 20px 40px;
+    }
+    .typhoon-panel {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: 10px;
+      padding: 14px;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15);
+    }
+    .typhoon-panel::-webkit-scrollbar { width: 4px; }
+    .typhoon-panel::-webkit-scrollbar-thumb { background: rgba(239,68,68,0.3); border-radius: 2px; }
+    .tp-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .tp-icon { font-size: 20px; animation: tp-spin 4s linear infinite; }
+    @keyframes tp-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .tp-title { font-size: 14px; font-weight: 700; color: #f87171; }
+    .tp-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+      border-radius: 4px;
+      margin-left: auto;
+    }
+    .tp-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin: 4px 0;
+      color: #94a3b8;
+    }
+    .tp-row .tp-val { color: #e2e8f0; font-weight: 500; }
+    .tp-section {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .tp-section-title {
+      font-size: 11px;
+      color: #f87171;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .tp-text {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    .tp-text strong { color: #fbbf24; font-weight: 600; }
+    .tp-time {
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 8px;
+      text-align: right;
+    }
+
+    /* 预报风险展望面板 */
+    .risk-outlook-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 20px 40px;
+    }
+    .risk-outlook-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .risk-outlook-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .risk-outlook-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .risk-district-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+      border: 1px solid var(--border-color);
+    }
+    .risk-district-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .risk-forecast-cards {
+      display: flex;
+      gap: 8px;
+    }
+    .risk-forecast-card {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      border-top: 3px solid #00ff88;
+    }
+    .risk-forecast-card.risk-low { border-top-color: #00ff88; }
+    .risk-forecast-card.risk-attention { border-top-color: #ffc800; }
+    .risk-forecast-card.risk-warning { border-top-color: #ff8c00; }
+    .risk-forecast-card.risk-high { border-top-color: #ff3232; }
+    .risk-forecast-date { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
+    .risk-forecast-icon { font-size: 22px; margin: 4px 0; }
+    .risk-forecast-desc { font-size: 11px; color: var(--text-primary); margin-bottom: 4px; }
+    .risk-forecast-temp { font-size: 12px; color: var(--accent-cyan); font-weight: 500; margin-bottom: 4px; }
+    .risk-forecast-rain { font-size: 10px; color: var(--text-secondary); margin-bottom: 4px; }
+    .risk-level-tag {
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .risk-level-tag.low { background: rgba(0, 255, 136, 0.2); color: #00ff88; }
+    .risk-level-tag.attention { background: rgba(255, 200, 0, 0.2); color: #ffc800; }
+    .risk-level-tag.warning { background: rgba(255, 140, 0, 0.2); color: #ff8c00; }
+    .risk-level-tag.high { background: rgba(255, 50, 50, 0.2); color: #ff3232; }
+
+    /* 预警统计面板 */
+    .warning-stats-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 20px 40px;
+    }
+    .warning-stats-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .warning-stats-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--orange);
+    }
+    .warning-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+    .warning-stat-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+    .warning-stat-value {
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .warning-stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .warning-type-list {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .warning-type-item {
+      padding: 6px 12px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      font-size: 12px;
+      border: 1px solid var(--border-color);
+    }
+    .no-warning-msg {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    /* 灾后影响评估面板 */
+    .impact-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 20px 40px;
+    }
+    .impact-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .impact-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--orange);
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .impact-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 15px;
+      border: 1px solid var(--border-color);
+    }
+    .impact-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .impact-card-body {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .impact-project-list {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 12px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .impact-project-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .impact-project-item:last-child { border-bottom: none; }
+    .impact-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .impact-dot.high { background: #ff3232; box-shadow: 0 0 6px #ff3232; }
+    .impact-dot.medium { background: #ff8c00; box-shadow: 0 0 6px #ff8c00; }
+    .impact-dot.low { background: #00ff88; box-shadow: 0 0 6px #00ff88; }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .typhoon-section, .risk-outlook-section, .warning-stats-section, .impact-section {
+        padding: 15px 20px;
+      }
+      .risk-outlook-grid, .weather-grid {
+        grid-template-columns: 1fr;
+      }
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+      .warning-stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .risk-forecast-cards {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 <body>
@@ -908,6 +1190,90 @@
         <div class="weather-forecast" id="forecastXiangan"></div>
         <div id="warningXiangan"></div>
       </div>
+    </div>
+  </div>
+
+
+  <!-- 台风预警面板 -->
+  <div class="typhoon-section" id="typhoonSection">
+    <div class="typhoon-panel">
+      <div class="tp-header">
+        <span class="tp-icon">🌀</span>
+        <span class="tp-title">台风"巴威"进展通报</span>
+        <span class="tp-badge">超强台风级</span>
+      </div>
+      <div class="tp-row"><span>位置</span><span class="tp-val">塞班西偏南约560km (16.0°N, 140.6°E)</span></div>
+      <div class="tp-row"><span>强度</span><span class="tp-val">17级以上（62m/s）</span></div>
+      <div class="tp-row"><span>气压</span><span class="tp-val">915 hPa</span></div>
+      <div class="tp-row"><span>风圈</span><span class="tp-val">七级320-380km / 十级160km / 十二级80km</span></div>
+      <div class="tp-row"><span>直径</span><span class="tp-val">约1800公里</span></div>
+      <div class="tp-row"><span>移速</span><span class="tp-val">西偏北 25-30km/h</span></div>
+
+      <div class="tp-section">
+        <div class="tp-section-title">📍 路径预报</div>
+        <div class="tp-text">
+          <strong>7月8日前</strong>：对我国无直接影响<br>
+          <strong>7月9日</strong>：趋向台湾以东海面<br>
+          <strong>7月10-11日</strong>：可能登陆或擦过台湾北部（16-17级）<br>
+          <strong>7月11-12日</strong>：浙闽交界登陆（14-15级）<strong>或</strong>直接登陆浙江（14-16级）
+        </div>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-title">⚠️ 影响评估</div>
+        <div class="tp-text">
+          已维持超强台风强度超72小时，强度强、体型大，周末可能登陆华东沿海。<br>
+          影响区域：浙江、上海、江苏、<strong>福建</strong>标的需高度警惕。<br>
+          气象专家建议以应对<strong>"利奇马""烟花"</strong>的心态提前防御。
+        </div>
+      </div>
+
+      <div class="tp-section">
+        <div class="tp-section-title">📊 本看板标的关注</div>
+        <div class="tp-text">
+          本看板15个农田项目位于<strong>厦门（同安区、翔安区）</strong>。当前台风距厦门较远（>800km），<strong>7月8日前无直接影响</strong>，但7月10日后若路径西偏，需关注风雨影响。建议提前做好防台风准备。
+        </div>
+      </div>
+
+      <div class="tp-time">数据来源：中央气象台 · 更新时间：2026-07-07 05:00</div>
+    </div>
+  </div>
+
+  <!-- 未来3天预报风险展望 -->
+  <div class="risk-outlook-section">
+    <div class="risk-outlook-header">
+      <div class="risk-outlook-title">
+        <span>📅</span> 未来3天预报风险展望
+      </div>
+      <div class="weather-update-time" id="riskOutlookTime">数据加载中...</div>
+    </div>
+    <div class="risk-outlook-grid" id="riskOutlookGrid">
+      <!-- JS动态填充 -->
+    </div>
+  </div>
+
+  <!-- 预警统计 -->
+  <div class="warning-stats-section">
+    <div class="warning-stats-header">
+      <span class="warning-stats-title">🔔 预警统计</span>
+      <span class="learning-badge" style="background:rgba(212,106,10,0.2);color:var(--orange)">实时预警</span>
+    </div>
+    <div id="warningStatsContent">
+      <div class="no-warning-msg">预警数据加载中...</div>
+    </div>
+  </div>
+
+  <!-- 灾后影响评估 -->
+  <div class="impact-section">
+    <div class="impact-header">
+      <div class="impact-title">🛡️ 灾后影响评估</div>
+      <div class="weather-update-time" id="impactUpdateTime">评估生成中...</div>
+    </div>
+    <div class="impact-grid" id="impactDimensionGrid">
+      <!-- JS动态填充 -->
+    </div>
+    <div class="impact-project-list" id="impactProjectList">
+      <!-- JS动态填充 -->
     </div>
   </div>
 
@@ -1397,6 +1763,263 @@
       }).join('');
     }
 
+
+    // ===== 共享天气数据源 =====
+    const SHARED_WEATHER_URL = 'https://qiqi1616.github.io/-weather-dashboard/data/weather.json';
+    const XIAMEN_QID = '101210201';
+
+    // ===== 预报风险展望功能 =====
+    function getRiskLevel(wmoCode) {
+      if ([0, 1, 2, 3, 45, 48].includes(wmoCode)) return { level: 'low', label: '低风险', color: '#00ff88', class: 'risk-low' };
+      if ([51, 53, 55, 56, 57, 61, 66, 71, 77, 80, 85].includes(wmoCode)) return { level: 'attention', label: '关注', color: '#ffc800', class: 'risk-attention' };
+      if ([63, 67, 73, 81, 86, 95, 96].includes(wmoCode)) return { level: 'warning', label: '预警', color: '#ff8c00', class: 'risk-warning' };
+      if ([65, 82, 99].includes(wmoCode)) return { level: 'high', label: '高风险', color: '#ff3232', class: 'risk-high' };
+      return { level: 'low', label: '低风险', color: '#00ff88', class: 'risk-low' };
+    }
+
+    async function fetchOpenMeteoForecast(loc) {
+      try {
+        const url = `${WEATHER_CONFIG.baseUrl}/forecast?latitude=${loc.lat}&longitude=${loc.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max&timezone=Asia%2FShanghai&forecast_days=3`;
+        const resp = await fetch(url);
+        return await resp.json();
+      } catch(e) { console.error('Forecast fetch error:', e); return null; }
+    }
+
+    function renderRiskOutlook(tonganData, xianganData) {
+      const grid = document.getElementById('riskOutlookGrid');
+      if (!tonganData || !xianganData) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-secondary)">预报数据暂不可用</div>';
+        return;
+      }
+      const d = tonganData.daily;
+      const xd = xianganData.daily;
+      let html = '';
+      
+      [['tongan', '同安区', 'var(--orange)', d], ['xiangan', '翔安区', 'var(--green)', xd]].forEach(([key, name, color, daily]) => {
+        html += '<div class="risk-district-card"><div class="risk-district-name" style="color:' + color + '">📍 ' + name + '</div><div class="risk-forecast-cards">';
+        for (let i = 0; i < 3 && i < daily.time.length; i++) {
+          const dt = new Date(daily.time[i]);
+          const dayStr = (dt.getMonth()+1) + '/' + dt.getDate();
+          const info = wmoInfo(daily.weather_code[i]);
+          const risk = getRiskLevel(daily.weather_code[i]);
+          const precip = daily.precipitation_sum[i];
+          const tempRange = Math.round(daily.temperature_2m_min[i]) + '~' + Math.round(daily.temperature_2m_max[i]) + '°C';
+          html += '<div class="risk-forecast-card ' + risk.class + '">';
+          html += '<div class="risk-forecast-date">' + dayStr + '</div>';
+          html += '<div class="risk-forecast-icon">' + info.icon + '</div>';
+          html += '<div class="risk-forecast-desc">' + info.text + '</div>';
+          html += '<div class="risk-forecast-temp">' + tempRange + '</div>';
+          html += '<div class="risk-forecast-rain">降水: ' + (precip !== null ? precip.toFixed(1) : '--') + 'mm</div>';
+          html += '<span class="risk-level-tag ' + risk.level + '">' + risk.label + '</span>';
+          html += '</div>';
+        }
+        html += '</div></div>';
+      });
+      
+      grid.innerHTML = html;
+      document.getElementById('riskOutlookTime').textContent = '数据源: Open-Meteo';
+    }
+
+    // ===== 预警数据获取与统计 =====
+    async function fetchSharedWeatherData() {
+      try {
+        const resp = await fetch(SHARED_WEATHER_URL);
+        return await resp.json();
+      } catch(e) { console.error('Shared weather data error:', e); return null; }
+    }
+
+    function renderWarningStats(data) {
+      const content = document.getElementById('warningStatsContent');
+      if (!data || !data.warning) {
+        content.innerHTML = '<div class="no-warning-msg">✅ 当前无活跃预警（厦门地区）</div>';
+        return;
+      }
+      
+      const xiamenWarnings = data.warning[XIAMEN_QID];
+      if (!xiamenWarnings || !xiamenWarnings.warning || xiamenWarnings.warning.length === 0) {
+        content.innerHTML = '<div class="no-warning-msg">✅ 当前无活跃预警（厦门地区）</div>';
+        return;
+      }
+      
+      const warnings = xiamenWarnings.warning.filter(w => w.status === 'active');
+      if (warnings.length === 0) {
+        content.innerHTML = '<div class="no-warning-msg">✅ 当前无活跃预警（厦门地区）</div>';
+        return;
+      }
+      
+      // 统计预警类型
+      const typeCount = {};
+      warnings.forEach(w => {
+        const t = w.typeName || '未知';
+        typeCount[t] = (typeCount[t] || 0) + 1;
+      });
+      
+      let html = '<div class="warning-stats-grid">';
+      html += '<div class="warning-stat-card"><div class="warning-stat-value" style="color:var(--orange)">' + warnings.length + '</div><div class="warning-stat-label">活跃预警数</div></div>';
+      
+      // 按等级统计
+      const levelColors = {'蓝色': '#3b82f6', '黄色': '#ffc800', '橙色': '#ff8c00', '红色': '#ff3232'};
+      const levelCount = {};
+      warnings.forEach(w => {
+        const l = w.level || w.severity || '未知';
+        levelCount[l] = (levelCount[l] || 0) + 1;
+      });
+      
+      Object.entries(levelCount).forEach(([level, count]) => {
+        const color = levelColors[level] || 'var(--text-secondary)';
+        html += '<div class="warning-stat-card"><div class="warning-stat-value" style="color:' + color + '">' + count + '</div><div class="warning-stat-label">' + level + '预警</div></div>';
+      });
+      
+      html += '</div>';
+      
+      // 预警类型列表
+      html += '<div class="warning-type-list">';
+      Object.entries(typeCount).forEach(([type, count]) => {
+        html += '<div class="warning-type-item">⚠️ ' + type + ' <span style="color:var(--accent-cyan)">' + count + '</span></div>';
+      });
+      html += '</div>';
+      
+      // 预警详情
+      html += '<div style="margin-top:12px">';
+      warnings.forEach(w => {
+        const levelClass = w.level === '红色' ? 'red' : w.level === '橙色' ? 'orange' : 'yellow';
+        html += '<div class="weather-warning ' + (levelClass === 'red' ? 'red' : levelClass === 'orange' ? 'orange' : '') + '" style="margin-bottom:8px">';
+        html += '<span class="warning-level ' + levelClass + '">' + w.level + '</span>';
+        html += '<span style="font-size:12px">' + (w.title || w.headline || '预警') + '</span>';
+        if (w.text) html += '<div style="margin-top:4px;font-size:11px;color:var(--text-secondary)">' + w.text.substring(0, 120) + '...</div>';
+        html += '</div>';
+      });
+      html += '</div>';
+      
+      content.innerHTML = html;
+    }
+
+    // ===== 灾后影响评估 =====
+    function renderImpactAssessment(omData, sharedData) {
+      const now = new Date();
+      document.getElementById('impactUpdateTime').textContent = '评估时间: ' + now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0') + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+      
+      const dimGrid = document.getElementById('impactDimensionGrid');
+      const projList = document.getElementById('impactProjectList');
+      
+      // 获取当前天气数据
+      let currentWind = 14, currentTemp = 30, currentRain = 0;
+      let currentWeatherText = '阴';
+      
+      if (omData && omData[0]) {
+        // Use Open-Meteo current data if available
+        const tonganLoc = WEATHER_CONFIG.locations.tongan;
+        const xianganLoc = WEATHER_CONFIG.locations.xiangan;
+        // Default values based on shared data
+        if (sharedData && sharedData.weather && sharedData.weather[XIAMEN_QID]) {
+          const sw = sharedData.weather[XIAMEN_QID];
+          currentWind = parseInt(sw.windSpeed) || 14;
+          currentTemp = parseInt(sw.temp) || 30;
+          currentWeatherText = sw.text || '阴';
+        }
+      }
+      
+      // 风力影响评估
+      let windImpact = 'low', windDesc = '', windColor = '#00ff88';
+      if (currentWind >= 60) { windImpact = 'high'; windDesc = '风力极大（≥60km/h），所有农田面临严重风灾风险，需紧急加固设施'; windColor = '#ff3232'; }
+      else if (currentWind >= 40) { windImpact = 'medium'; windDesc = '风力较强（40-60km/h），大棚/温室存在损毁风险，果树易倒伏'; windColor = '#ff8c00'; }
+      else if (currentWind >= 20) { windImpact = 'medium'; windDesc = '中等风力（20-40km/h），简易大棚可能受损，建议加固'; windColor = '#ffc800'; }
+      else { windImpact = 'low'; windDesc = '当前风力较小（<' + currentWind + 'km/h），风力影响有限'; windColor = '#00ff88'; }
+      
+      // 降雨影响评估
+      let rainImpact = 'low', rainDesc = '', rainColor = '#00ff88';
+      if (currentWeatherText.includes('大雨') || currentWeatherText.includes('暴雨')) { rainImpact = 'high'; rainDesc = '强降雨天气，农田内涝风险高，排水系统承压'; rainColor = '#ff3232'; }
+      else if (currentWeatherText.includes('中雨')) { rainImpact = 'medium'; rainDesc = '中等降雨，低洼地块注意积水，需关注排水'; rainColor = '#ff8c00'; }
+      else if (currentWeatherText.includes('小雨') || currentWeatherText.includes('雨')) { rainImpact = 'low'; rainDesc = '小雨天气，对农田影响较小，注意田间排水'; rainColor = '#ffc800'; }
+      else { rainImpact = 'low'; rainDesc = '无明显降雨，农田水分管理正常'; rainColor = '#00ff88'; }
+      
+      // 温度影响评估
+      let tempImpact = 'low', tempDesc = '', tempColor = '#00ff88';
+      if (currentTemp >= 38) { tempImpact = 'high'; tempDesc = '极端高温（≥38°C），水稻等作物面临热害风险，需加强灌溉'; tempColor = '#ff3232'; }
+      else if (currentTemp >= 35) { tempImpact = 'medium'; tempDesc = '高温天气（35-38°C），午间需增加灌溉频次，防止高温逼熟'; tempColor = '#ffc800'; }
+      else if (currentTemp <= 10) { tempImpact = 'high'; tempDesc = '低温（≤10°C），热带作物面临冻害风险'; tempColor = '#ff3232'; }
+      else { tempImpact = 'low'; tempDesc = '温度适中（当前' + currentTemp + '°C），作物生长条件良好'; tempColor = '#00ff88'; }
+      
+      dimGrid.innerHTML = [
+        {icon: '💨', title: '风力影响', level: windImpact, desc: windDesc, color: windColor},
+        {icon: '🌧️', title: '降雨影响', level: rainImpact, desc: rainDesc, color: rainColor},
+        {icon: '🌡️', title: '温度影响', level: tempImpact, desc: tempDesc, color: tempColor}
+      ].map(d => {
+        const levelLabel = d.level === 'high' ? '高风险' : d.level === 'medium' ? '中风险' : '低风险';
+        return '<div class="impact-card"><div class="impact-card-title">' + d.icon + ' ' + d.title + ' <span class="risk-level-tag ' + d.level + '">' + levelLabel + '</span></div><div class="impact-card-body">' + d.desc + '</div></div>';
+      }).join('');
+      
+      // 项目影响评估
+      let projHtml = '<div style="font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text-primary)">🏘️ 各项目影响评估与建议</div>';
+      
+      PROJECTS.forEach(p => {
+        // 根据台风路径和距离评估
+        let risk = 'low', dotClass = 'low';
+        
+        // 台风风险评估（当前台风距厦门较远）
+        if (currentWind >= 40) {
+          risk = 'medium'; dotClass = 'medium';
+        }
+        if (currentWeatherText.includes('大雨') || currentWeatherText.includes('暴雨')) {
+          risk = 'high'; dotClass = 'high';
+        }
+        
+        const suggestions = {
+          'high': '⚠️ 建议立即启动应急响应，加强巡查',
+          'medium': '🔶 建议关注天气变化，做好防范准备',
+          'low': '✅ 当前条件正常，保持常规巡查'
+        };
+        
+        projHtml += '<div class="impact-project-item">';
+        projHtml += '<div class="impact-dot ' + dotClass + '"></div>';
+        projHtml += '<span style="font-weight:500">' + p.name + '</span>';
+        projHtml += '<span style="color:var(--text-secondary);margin-left:auto;font-size:11px">' + p.district + ' · ' + p.town + '</span>';
+        projHtml += '<span style="color:' + (dotClass === 'high' ? '#ff3232' : dotClass === 'medium' ? '#ff8c00' : '#00ff88') + ';font-size:11px;margin-left:8px">' + suggestions[risk] + '</span>';
+        projHtml += '</div>';
+      });
+      
+      // 添加台风相关建议
+      projHtml += '<div style="margin-top:12px;padding:10px;background:rgba(239,68,68,0.1);border-radius:6px;border:1px solid rgba(239,68,68,0.3)">';
+      projHtml += '<div style="font-size:12px;font-weight:600;color:#f87171;margin-bottom:6px">🌀 台风"巴威"防范建议</div>';
+      projHtml += '<div style="font-size:11px;color:#94a3b8;line-height:1.8">';
+      projHtml += '1. 当前台风中心距厦门约1200km，短期内无直接影响<br>';
+      projHtml += '2. 持续关注台风路径变化，7月9日后关注台湾以东海面动态<br>';
+      projHtml += '3. 提前检查排水系统畅通，清理田间沟渠<br>';
+      projHtml += '4. 加固大棚、温室等设施，检查田间电力线路<br>';
+      projHtml += '5. 若台风路径调整影响福建，提前启动应急响应预案';
+      projHtml += '</div></div>';
+      
+      projList.innerHTML = projHtml;
+    }
+
+    // ===== 预警信息渲染到天气卡片 =====
+    function renderWeatherWarnings(data) {
+      if (!data || !data.warning) return;
+      
+      ['tongan', 'xiangan'].forEach(district => {
+        const key = district === 'tongan' ? 'Tongan' : 'Xiangan';
+        const el = document.getElementById('warning' + key);
+        if (!el) return;
+        
+        const xiamenWarnings = data.warning[XIAMEN_QID];
+        if (!xiamenWarnings || !xiamenWarnings.warning || xiamenWarnings.warning.length === 0) {
+          el.innerHTML = '';
+          return;
+        }
+        
+        const warnings = xiamenWarnings.warning.filter(w => w.status === 'active');
+        if (warnings.length === 0) {
+          el.innerHTML = '';
+          return;
+        }
+        
+        el.innerHTML = warnings.map(w => {
+          const levelClass = w.level === '红色' ? 'red' : w.level === '橙色' ? 'orange' : '';
+          return '<div class="weather-warning ' + levelClass + '"><span class="warning-level ' + (w.level === '红色' ? 'red' : w.level === '橙色' ? 'orange' : 'yellow') + '">' + w.level + '</span>' + (w.title || w.headline || '预警') + '</div>';
+        }).join('');
+      });
+    }
+
     // 启动
     document.addEventListener('DOMContentLoaded', function() {
       initLearning();
@@ -1404,9 +2027,38 @@
       initMap();
       initWeather();
       initInspection();
-      // 每小时刷新天气
-      setInterval(initWeather, 3600000);
+      initNewFeatures();
+      // 每30分钟刷新天气
+      setInterval(initWeather, 1800000);
+      setInterval(initNewFeatures, 1800000);
     });
+
+    // ===== 新功能初始化 =====
+    async function initNewFeatures() {
+      // 获取共享数据
+      const sharedData = await fetchSharedWeatherData();
+      
+      // 渲染预警到天气卡片
+      if (sharedData) {
+        renderWeatherWarnings(sharedData);
+      }
+      
+      // 获取Open-Meteo详细预报数据
+      const [tonganForecast, xianganForecast] = await Promise.all([
+        fetchOpenMeteoForecast(WEATHER_CONFIG.locations.tongan),
+        fetchOpenMeteoForecast(WEATHER_CONFIG.locations.xiangan)
+      ]);
+      
+      // 渲染风险展望
+      renderRiskOutlook(tonganForecast, xianganForecast);
+      
+      // 渲染预警统计
+      renderWarningStats(sharedData);
+      
+      // 渲染灾后影响评估
+      renderImpactAssessment(tonganForecast, sharedData);
+    }
+
   </script>
 </body>
 </html>
