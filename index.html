@@ -90,7 +90,7 @@
     }
     
     .stat-icon.total { background: rgba(0, 212, 255, 0.2); color: var(--accent-cyan); }
-    .stat-icon.premium { background: rgba(0, 255, 136, 0.2); color: var(--accent-green); }
+
     .stat-icon.projects { background: rgba(212, 106, 10, 0.2); color: var(--orange); }
     .stat-icon.districts { background: rgba(15, 138, 96, 0.2); color: var(--green); }
     
@@ -1026,13 +1026,7 @@
         <span class="stat-label">总承保面积（亩）</span>
       </div>
     </div>
-    <div class="stat-item">
-      <div class="stat-icon premium">💰</div>
-      <div class="stat-info">
-        <span class="stat-value">55.79</span>
-        <span class="stat-label">总保费（万元）</span>
-      </div>
-    </div>
+
     <div class="stat-item">
       <div class="stat-icon projects">🏘️</div>
       <div class="stat-info">
@@ -1115,10 +1109,7 @@
               <div class="detail-label">承保面积</div>
               <div class="detail-value" id="detailArea"></div>
             </div>
-            <div class="detail-item">
-              <div class="detail-label">保费金额</div>
-              <div class="detail-value" id="detailPremium"></div>
-            </div>
+
             <div class="detail-item detail-full">
               <div class="detail-label">保险期间</div>
               <div class="detail-value" id="detailPeriod"></div>
@@ -1406,9 +1397,7 @@
       {id:8, title:'电力线路老化', location:'军村村 · 五显镇', findDate:'2026-03-15', dueDate:'2026-08-31', status:'pending', progress:0, desc:'灌溉用电线路绝缘层老化，需全线更换约800米'}
     ];
 
-    // 保费映射（同安区30元/亩，翔安区30元/亩）
-    const PREMIUM_RATE = 30;
-    PROJECTS.forEach(p => p.premium = (p.area * PREMIUM_RATE / 10000).toFixed(2));
+
 
     let chart = null;
     let mapData = null;
@@ -1478,7 +1467,7 @@
       document.getElementById('detailTown').textContent = project.town;
       document.getElementById('detailDistrict').textContent = project.district;
       document.getElementById('detailArea').textContent = project.area.toLocaleString() + ' 亩';
-      document.getElementById('detailPremium').textContent = project.premium + ' 万元';
+
       document.getElementById('detailPeriod').textContent = project.period;
       document.getElementById('detailPolicy').textContent = project.policy;
       
